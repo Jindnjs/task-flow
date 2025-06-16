@@ -1,5 +1,7 @@
 package com.example.taskflow.domain.auth.service;
 
+import com.example.taskflow.common.enums.ErrorCode;
+import com.example.taskflow.common.exception.TaskFlowException;
 import com.example.taskflow.common.security.PasswordEncoder;
 import com.example.taskflow.domain.auth.dto.request.SigninRequest;
 import com.example.taskflow.domain.auth.dto.request.SignupRequest;
@@ -22,10 +24,10 @@ public class AuthService {
     public SignupResponse signup(SignupRequest signupRequest) {
 
         if(userRepository.existsByUsername(signupRequest.getUsername())) {
-            throw new RuntimeException("중복 아이디 불가");
+            throw new TaskFlowException(ErrorCode.USER_NAME_EXISTS);
         }
         if(userRepository.existsByEmail(signupRequest.getEmail())) {
-            throw new RuntimeException("중복 이메일 불가");
+            throw new TaskFlowException(ErrorCode.USER_EMAIL_EXISTS);
         }
 
         String encodePassword = passwordEncoder.encode(signupRequest.getPassword());
@@ -40,10 +42,10 @@ public class AuthService {
 
     public SigninResopnse signin(SigninRequest signinRequest) {
         User user = userRepository.findByUsername(signinRequest.getUsername())
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 사용자입니다."));
+                .orElseThrow(() -> new TaskFlowException(ErrorCode.USER_UNAUTHORIZED));
 
         if(!passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())) {
-            throw new RuntimeException("일치하지 않는 비밀번호 입니다.");
+            throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
         }
 
         return new SigninResopnse(user.getName());

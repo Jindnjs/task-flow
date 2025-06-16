@@ -1,5 +1,8 @@
 package com.example.taskflow.domain.user.enums;
 
+import com.example.taskflow.common.enums.ErrorCode;
+import com.example.taskflow.common.exception.TaskFlowException;
+
 import java.util.Arrays;
 
 public enum UserRole {
@@ -9,7 +12,6 @@ public enum UserRole {
         return Arrays.stream(UserRole.values())
                 .filter(r -> r.name().equalsIgnoreCase(role))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("유효하지 않은 UerRole"));
-        //Todo : 오류 바꾸기
+                .orElseThrow(() -> new TaskFlowException(ErrorCode.USER_ROLE_NOT_EXISTS));
     }
 }
