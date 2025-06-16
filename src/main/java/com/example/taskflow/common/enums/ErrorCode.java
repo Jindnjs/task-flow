@@ -23,7 +23,9 @@ public enum ErrorCode {
     //token
     TOKEN_NOT_EXISTS(HttpStatus.BAD_REQUEST, "JWT 토큰이 필요합니다."),
     TOKEN_INVALID(HttpStatus.UNAUTHORIZED, "잘못된 토큰 형식 입니다."),
-
+    TOKEN_SIGNATURE_ERROR(HttpStatus.UNAUTHORIZED, "유효하지 않는 JWT 서명입니다."),
+    TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "만료된 JWT token 입니다."),
+    TOKEN_ERROR(HttpStatus.UNAUTHORIZED, "<UNK> <UNK> <UNK> <UNK>."),
 
     ;
 
