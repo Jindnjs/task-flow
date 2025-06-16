@@ -2,6 +2,7 @@ package com.example.taskflow.domain.auth.service;
 
 import com.example.taskflow.common.enums.ErrorCode;
 import com.example.taskflow.common.exception.TaskFlowException;
+import com.example.taskflow.common.jwt.JwtUtil;
 import com.example.taskflow.common.security.PasswordEncoder;
 import com.example.taskflow.domain.auth.dto.request.SigninRequest;
 import com.example.taskflow.domain.auth.dto.request.SignupRequest;
@@ -19,7 +20,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final JwtUtil jwtUtil;
 
     public SignupResponse signup(SignupRequest signupRequest) {
 
@@ -48,6 +49,8 @@ public class AuthService {
             throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
         }
 
-        return new SigninResopnse(user.getName());
+        String token = jwtUtil.createToken(user.getId(), user.getRole());
+
+        return new SigninResopnse(token);
     }
 }
