@@ -45,7 +45,7 @@ public class ApiResponse<T> {
                     .body(new ApiResponse<>(success, baseCode.getMessage(), null));
         }
 
-        public ResponseEntity<ApiResponse<T>> body(T body){
+        public <T> ResponseEntity<ApiResponse<T>> body(T body){
             return ResponseEntity
                     .status(baseCode.getHttpStatus())
                     .body(new ApiResponse<>(success, baseCode.getMessage(), body));

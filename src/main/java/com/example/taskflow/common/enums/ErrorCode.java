@@ -14,8 +14,8 @@ public enum ErrorCode implements BaseCode {
 
 //auth
     //signup
-    USER_NAME_EXISTS(HttpStatus.BAD_REQUEST, "이미 존재하는 사용자명 입니다."),
-    USER_EMAIL_EXISTS(HttpStatus.BAD_REQUEST, "이미 존재하는 이메일 입니다."),
+    USER_NAME_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 사용자명 입니다."),
+    USER_EMAIL_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 이메일 입니다."),
     //signin
     USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "잘못된 사용자명 또는 비밀번호입니다."),
 
