@@ -27,7 +27,7 @@ public class JwtFilter implements Filter {
         // 회원가입 로그인 관련 통과로직
         String requestURI = httpRequest.getRequestURI();
 
-        if(requestURI.startsWith("/auth")){
+        if(requestURI.startsWith("/api/auth")){
             chain.doFilter(request, response);
             return;
         }

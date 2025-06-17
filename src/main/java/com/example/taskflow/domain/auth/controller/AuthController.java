@@ -8,10 +8,12 @@ import com.example.taskflow.domain.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class AuthController {
 
     private final AuthService authService;
@@ -21,7 +23,7 @@ public class AuthController {
         return authService.signup(signupRequest);
     }
 
-    @PostMapping("/auth/signin")
+    @PostMapping("/auth/login")
     public SigninResopnse signin(@RequestBody SigninRequest signinRequest){
         return authService.signin(signinRequest);
     }
