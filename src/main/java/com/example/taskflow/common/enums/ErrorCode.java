@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @Getter
-public enum ErrorCode {
+public enum ErrorCode implements BaseCode {
 
 //user
     //role

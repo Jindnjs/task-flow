@@ -1,14 +1,14 @@
 package com.example.taskflow.common.exception;
 
-import com.example.taskflow.common.enums.ErrorCode;
+import com.example.taskflow.common.enums.BaseCode;
 import lombok.Getter;
 
 @Getter
 public class TaskFlowException extends RuntimeException {
 
-    private ErrorCode errorCode;
+    private BaseCode errorCode;
 
-    public TaskFlowException(ErrorCode errorCode) {
+    public TaskFlowException(BaseCode errorCode) {
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
