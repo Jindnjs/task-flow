@@ -1,6 +1,6 @@
 package com.example.taskflow.domain.user.entity;
 
-import com.example.taskflow.domain.common.entity.BaseEntity;
+import com.example.taskflow.common.entity.BaseEntity;
 import com.example.taskflow.domain.user.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;

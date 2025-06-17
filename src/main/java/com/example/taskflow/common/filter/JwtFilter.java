@@ -1,7 +1,8 @@
-package com.example.taskflow.common.jwt;
+package com.example.taskflow.common.filter;
 
 import com.example.taskflow.common.enums.ErrorCode;
 import com.example.taskflow.common.utils.HttpResponseUtil;
+import com.example.taskflow.common.utils.JwtUtil;
 import com.example.taskflow.domain.user.enums.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

@@ -1,4 +1,4 @@
-package com.example.taskflow.common.jwt;
+package com.example.taskflow.common.utils;
 
 import com.example.taskflow.common.enums.ErrorCode;
 import com.example.taskflow.common.exception.TaskFlowException;

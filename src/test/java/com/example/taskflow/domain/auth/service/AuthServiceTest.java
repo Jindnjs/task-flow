@@ -2,7 +2,7 @@ package com.example.taskflow.domain.auth.service;
 
 import com.example.taskflow.common.enums.ErrorCode;
 import com.example.taskflow.common.exception.TaskFlowException;
-import com.example.taskflow.common.security.PasswordEncoder;
+import com.example.taskflow.common.utils.PasswordEncoder;
 import com.example.taskflow.domain.auth.dto.request.SignupRequest;
 import com.example.taskflow.domain.auth.dto.response.SignupResponse;
 import com.example.taskflow.domain.user.entity.User;
