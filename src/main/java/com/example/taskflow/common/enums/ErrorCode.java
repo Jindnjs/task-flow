@@ -26,6 +26,10 @@ public enum ErrorCode implements BaseCode {
     TOKEN_INVALID(HttpStatus.UNAUTHORIZED, "잘못된 토큰 형식 입니다."),
     TOKEN_SIGNATURE_ERROR(HttpStatus.UNAUTHORIZED, "유효하지 않는 JWT 서명입니다."),
     TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "만료된 JWT token 입니다."),
+// task
+    //enums
+    PRIORITY_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
+    STATUS_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
 
     ;
 

@@ -37,11 +37,11 @@ public class Task extends BaseEntity {
     @JoinColumn(name = "assignee_id")
     private User assignee;
 
-    public Task(String title, String description, Priority priority, Status status, LocalDateTime dueDate, User creator, User assignee) {
+    public Task(String title, String description, Priority priority, LocalDateTime dueDate, User creator, User assignee) {
         this.title = title;
         this.description = description;
         this.priority = priority;
-        this.status = status;
+        this.status = Status.TODO;
         this.dueDate = dueDate;
         this.creator = creator;
         this.assignee = assignee;
