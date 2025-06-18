@@ -11,7 +11,8 @@ public enum ErrorCode implements BaseCode {
 //user
     //role
     USER_ROLE_NOT_EXISTS(HttpStatus.BAD_REQUEST, "유효하지 않은 userRole 입니다."),
-
+    //entity
+    USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 사용자 입니다."),
 //auth
     //signup
     USER_NAME_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 사용자명 입니다."),
@@ -25,7 +26,6 @@ public enum ErrorCode implements BaseCode {
     TOKEN_INVALID(HttpStatus.UNAUTHORIZED, "잘못된 토큰 형식 입니다."),
     TOKEN_SIGNATURE_ERROR(HttpStatus.UNAUTHORIZED, "유효하지 않는 JWT 서명입니다."),
     TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "만료된 JWT token 입니다."),
-    TOKEN_ERROR(HttpStatus.UNAUTHORIZED, "<UNK> <UNK> <UNK> <UNK>."),
 
     ;
 
