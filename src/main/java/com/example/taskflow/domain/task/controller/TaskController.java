@@ -41,4 +41,12 @@ public class TaskController {
         Page<TaskResponse> tasks = taskService.getlist(status, pageable);
         return ApiResponse.success(SuccessCode.TASK_LIST_SUCCESS).body(new PageResponse<>(tasks));
     }
+
+    @GetMapping("/api/tasks/{taskId}")
+    public ResponseEntity<ApiResponse<TaskResponse>> get(
+            @PathVariable Long taskId
+    ) {
+        TaskResponse task = taskService.get(taskId);
+        return ApiResponse.success(SuccessCode.TASK_SINGLE_SUCCESS).body(task);
+    }
 }
