@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class TaskCreateResponse {
+public class TaskResponse {
     private Long id;
     private String title;
     private String description;
@@ -20,8 +20,8 @@ public class TaskCreateResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static TaskCreateResponse of(Task task) {
-        TaskCreateResponse response = new TaskCreateResponse();
+    public static TaskResponse of(Task task) {
+        TaskResponse response = new TaskResponse();
         response.id = task.getId();
         response.title = task.getTitle();
         response.description = task.getDescription();

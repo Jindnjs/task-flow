@@ -21,6 +21,7 @@ public enum SuccessCode implements BaseCode {
 
 //task
     TASK_SUCCESS(HttpStatus.CREATED, "Task가 생성되었습니다."),
+    TASK_LIST_SUCCESS(HttpStatus.CREATED, "Task 목록을 조회했습니다."),
     ;
     private final HttpStatus httpStatus;
     private final String message;
