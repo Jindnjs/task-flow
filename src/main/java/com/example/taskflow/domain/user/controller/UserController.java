@@ -1,6 +1,8 @@
 package com.example.taskflow.domain.user.controller;
 
+import com.example.taskflow.common.annotation.Authen;
 import com.example.taskflow.common.dto.ApiResponse;
+import com.example.taskflow.common.dto.AuthUser;
 import com.example.taskflow.common.enums.SuccessCode;
 import com.example.taskflow.domain.user.dto.ProfileResponse;
 import com.example.taskflow.domain.user.service.UserService;
@@ -16,10 +18,9 @@ public class UserController {
 
     @GetMapping("/api/users/me")
     public ResponseEntity<ApiResponse<ProfileResponse>> profile(
-            //Todo : 로그인 상태 받아오기
-    ) {
-        Long userId = 1L;
-        ProfileResponse profile = userService.profile(userId);
+            @Authen AuthUser authUser
+            ) {
+        ProfileResponse profile = userService.profile(authUser.getUserId());
         return ApiResponse.success(SuccessCode.PROFILE_SUCCESS).body(profile);
     }
 }
