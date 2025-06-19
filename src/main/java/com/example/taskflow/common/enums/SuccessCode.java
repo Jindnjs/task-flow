@@ -18,7 +18,7 @@ public enum SuccessCode implements BaseCode {
 
 //user
     PROFILE_SUCCESS(HttpStatus.OK, "사용자 정보를 조회했습니다."),
-
+    PROFILE_LIST_SUCCESS(HttpStatus.OK, "사용자 정보를 조회했습니다."),
 //task
     TASK_SUCCESS(HttpStatus.CREATED, "Task가 생성되었습니다."),
     TASK_LIST_SUCCESS(HttpStatus.CREATED, "Task 목록을 조회했습니다."),

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -23,5 +25,10 @@ public class UserController {
         ProfileResponse profile = userService.profile(authUser.getUserId());
         return ApiResponse.success(SuccessCode.PROFILE_SUCCESS).body(profile);
     }
-    
+
+    @GetMapping("/api/users")
+    public ResponseEntity<ApiResponse<List<ProfileResponse>>> profiles(){
+        List<ProfileResponse> profiles = userService.getProfiles();
+        return ApiResponse.success(SuccessCode.PROFILE_LIST_SUCCESS).body(profiles);
+    }
 }
