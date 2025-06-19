@@ -23,4 +23,5 @@ public class UserController {
         ProfileResponse profile = userService.profile(authUser.getUserId());
         return ApiResponse.success(SuccessCode.PROFILE_SUCCESS).body(profile);
     }
+    
 }
