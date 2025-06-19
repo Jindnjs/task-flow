@@ -12,6 +12,7 @@ import com.example.taskflow.domain.task.repository.TaskRepository;
 import com.example.taskflow.domain.user.entity.User;
 import com.example.taskflow.domain.user.enums.UserRole;
 import com.example.taskflow.domain.user.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,11 +56,25 @@ public class TaskService {
     public TaskResponse status(Long taskId, AuthUser authUser, StatusUpdateDto dto) {
         Task task = taskRepository.findByIdAndIsDeletedIsFalse(taskId)
                 .orElseThrow(() -> new TaskFlowException(ErrorCode.TASK_NOT_EXISTS));
-        if (!(authUser.getUserRole().equals(UserRole.ADMIN) || task.getAssignee().getId().equals(authUser.getUserId()))){
+        if (!isAuthorized(authUser, task.getAssignee().getId())){
             throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
         }
         task.updateStatus(Status.of(dto.getStatus()));
         Task updated = taskRepository.save(task);
         return TaskResponse.of(updated);
+    }
+
+    @Transactional
+    public void delete(Long taskId, AuthUser authUser) {
+        Task task = taskRepository.findByIdAndIsDeletedIsFalse(taskId)
+                .orElseThrow(() -> new TaskFlowException(ErrorCode.TASK_NOT_EXISTS));
+        if (!isAuthorized(authUser, task.getAssignee().getId())){
+            throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
+        }
+        task.delete();
+    }
+
+    private boolean isAuthorized(AuthUser authUser, Long userId) {
+        return authUser.getUserRole().equals(UserRole.ADMIN) || authUser.getUserId().equals(userId);
     }
 }

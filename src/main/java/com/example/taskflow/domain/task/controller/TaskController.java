@@ -59,4 +59,13 @@ public class TaskController {
         TaskResponse updated = taskService.status(taskId, authUser, dto);
         return ApiResponse.success(SuccessCode.TASK_UPDATE_SUCCESS).body(updated);
     }
+
+    @DeleteMapping("/api/tasks/{taskId}")
+    public ResponseEntity<ApiResponse<Void>> delete(
+            @PathVariable Long taskId,
+            @Authen AuthUser authUser
+    ){
+        taskService.delete(taskId, authUser);
+        return ApiResponse.success(SuccessCode.TASK_DELETE_SUCCESS).body();
+    }
 }

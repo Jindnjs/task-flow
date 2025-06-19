@@ -28,7 +28,7 @@ public enum ErrorCode implements BaseCode {
     TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "만료된 JWT token 입니다."),
 // task
     //enums
-    PRIORITY_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
+    PRIORITY_NOT_EXISTS(HttpStatus.BAD_REQUEST, "유효하지 않은 Priority입니다."),
     STATUS_NOT_EXISTS(HttpStatus.BAD_REQUEST, "유효하지 않은 상태값입니다."),
     STATUS_CANT_CHANGE(HttpStatus.BAD_REQUEST, "해당 상태값으로 변경할 수 없습니다."),
     TASK_NOT_EXISTS(HttpStatus.NOT_FOUND, "해당 ID의 작업을 찾을 수 없습니다."),
