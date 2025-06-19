@@ -27,7 +27,6 @@ public class TaskController {
     public ResponseEntity<ApiResponse<TaskResponse>> create(
             @Valid @RequestBody TaskCreateRequest request,
             @Authen AuthUser authUser
-            //TODO: valid
     ){
         TaskResponse response = taskService.create(request, authUser.getUserId());
         return ApiResponse.success(SuccessCode.TASK_SUCCESS).body(response);

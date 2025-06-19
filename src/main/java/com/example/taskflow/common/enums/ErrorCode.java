@@ -30,7 +30,9 @@ public enum ErrorCode implements BaseCode {
     //enums
     PRIORITY_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
     STATUS_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
-    TASK_NOT_EXISTS(HttpStatus.BAD_REQUEST, "해당 ID의 작업을 찾을 수 없습니다."),
+    TASK_NOT_EXISTS(HttpStatus.NOT_FOUND, "해당 ID의 작업을 찾을 수 없습니다."),
+//valid
+    VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     ;
 
 
