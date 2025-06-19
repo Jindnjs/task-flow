@@ -14,4 +14,12 @@ public enum Status {
                 .findFirst()
                 .orElseThrow(() -> new TaskFlowException(ErrorCode.STATUS_NOT_EXISTS));
     }
+
+    public boolean isChange(Status status) {
+        return switch (this){
+            case TODO -> status == IN_PROGRESS;
+            case IN_PROGRESS -> status == DONE;
+            case DONE -> false;
+        };
+    }
 }

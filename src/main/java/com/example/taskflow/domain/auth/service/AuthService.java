@@ -43,10 +43,10 @@ public class AuthService {
 
     public SigninResopnse signin(SigninRequest signinRequest) {
         User user = userRepository.findByUsername(signinRequest.getUsername())
-                .orElseThrow(() -> new TaskFlowException(ErrorCode.USER_UNAUTHORIZED));
+                .orElseThrow(() -> new TaskFlowException(ErrorCode.USER_LOGIN_UNAUTHORIZED));
 
         if(!passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())) {
-            throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
+            throw new TaskFlowException(ErrorCode.USER_LOGIN_UNAUTHORIZED);
         }
 
         String token = jwtUtil.createToken(user.getId(), user.getRole());

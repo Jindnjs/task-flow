@@ -1,13 +1,16 @@
 package com.example.taskflow.domain.task.service;
 
+import com.example.taskflow.common.dto.AuthUser;
 import com.example.taskflow.common.enums.ErrorCode;
 import com.example.taskflow.common.exception.TaskFlowException;
+import com.example.taskflow.domain.task.dto.StatusUpdateDto;
 import com.example.taskflow.domain.task.dto.TaskCreateRequest;
 import com.example.taskflow.domain.task.dto.TaskResponse;
 import com.example.taskflow.domain.task.entity.Task;
 import com.example.taskflow.domain.task.enums.Status;
 import com.example.taskflow.domain.task.repository.TaskRepository;
 import com.example.taskflow.domain.user.entity.User;
+import com.example.taskflow.domain.user.enums.UserRole;
 import com.example.taskflow.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -39,13 +42,24 @@ public class TaskService {
     }
 
     public Page<TaskResponse> getlist(Status status, Pageable pageable) {
-        Page<Task> tasks = taskRepository.findAllByStatus(status, pageable);
+        Page<Task> tasks = taskRepository.findAllByStatusAndIsDeletedIsFalse(status, pageable);
         return tasks.map(TaskResponse::of);
     }
 
     public TaskResponse get(Long taskId) {
-        Task task = taskRepository.findById(taskId)
+        Task task = taskRepository.findByIdAndIsDeletedIsFalse(taskId)
                 .orElseThrow(() -> new TaskFlowException(ErrorCode.TASK_NOT_EXISTS));
         return TaskResponse.of(task);
+    }
+
+    public TaskResponse status(Long taskId, AuthUser authUser, StatusUpdateDto dto) {
+        Task task = taskRepository.findByIdAndIsDeletedIsFalse(taskId)
+                .orElseThrow(() -> new TaskFlowException(ErrorCode.TASK_NOT_EXISTS));
+        if (!(authUser.getUserRole().equals(UserRole.ADMIN) || task.getAssignee().getId().equals(authUser.getUserId()))){
+            throw new TaskFlowException(ErrorCode.USER_UNAUTHORIZED);
+        }
+        task.updateStatus(Status.of(dto.getStatus()));
+        Task updated = taskRepository.save(task);
+        return TaskResponse.of(updated);
     }
 }

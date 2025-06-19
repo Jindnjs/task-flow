@@ -18,8 +18,8 @@ public enum ErrorCode implements BaseCode {
     USER_NAME_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 사용자명 입니다."),
     USER_EMAIL_EXISTS(HttpStatus.CONFLICT, "이미 존재하는 이메일 입니다."),
     //signin
-    USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "잘못된 사용자명 또는 비밀번호입니다."),
-
+    USER_LOGIN_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "잘못된 사용자명 또는 비밀번호입니다."),
+    USER_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "해당 작업에 대한 권한이 없습니다."),
 // jwt
     //token
     TOKEN_NOT_EXISTS(HttpStatus.BAD_REQUEST, "JWT 토큰이 필요합니다."),
@@ -29,7 +29,8 @@ public enum ErrorCode implements BaseCode {
 // task
     //enums
     PRIORITY_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
-    STATUS_NOT_EXISTS(HttpStatus.BAD_REQUEST, "<UNK> <UNK> <UNK> <UNK>."),
+    STATUS_NOT_EXISTS(HttpStatus.BAD_REQUEST, "유효하지 않은 상태값입니다."),
+    STATUS_CANT_CHANGE(HttpStatus.BAD_REQUEST, "해당 상태값으로 변경할 수 없습니다."),
     TASK_NOT_EXISTS(HttpStatus.NOT_FOUND, "해당 ID의 작업을 찾을 수 없습니다."),
 //valid
     VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),

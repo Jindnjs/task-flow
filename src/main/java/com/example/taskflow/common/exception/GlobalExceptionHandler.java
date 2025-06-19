@@ -13,10 +13,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(TaskFlowException.class)
-    public ResponseEntity<String> handleTaskFlowExecption(TaskFlowException ex) {
-        return ResponseEntity
-                .status(ex.getErrorCode().getHttpStatus())
-                .body(ex.getMessage());
+    public ResponseEntity<ApiResponse<Void>> handleTaskFlowExecption(TaskFlowException ex) {
+        return ApiResponse.error(ex.getErrorCode()).body();
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Map<String,String>>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {

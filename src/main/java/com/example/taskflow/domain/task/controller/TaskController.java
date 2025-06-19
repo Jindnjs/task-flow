@@ -5,6 +5,7 @@ import com.example.taskflow.common.dto.ApiResponse;
 import com.example.taskflow.common.dto.AuthUser;
 import com.example.taskflow.common.dto.PageResponse;
 import com.example.taskflow.common.enums.SuccessCode;
+import com.example.taskflow.domain.task.dto.StatusUpdateDto;
 import com.example.taskflow.domain.task.dto.TaskCreateRequest;
 import com.example.taskflow.domain.task.dto.TaskResponse;
 import com.example.taskflow.domain.task.enums.Status;
@@ -47,5 +48,15 @@ public class TaskController {
     ) {
         TaskResponse task = taskService.get(taskId);
         return ApiResponse.success(SuccessCode.TASK_SINGLE_SUCCESS).body(task);
+    }
+
+    @PatchMapping("/api/tasks/{taskId}/status")
+    public ResponseEntity<ApiResponse<TaskResponse>> status(
+            @PathVariable Long taskId,
+            @Authen AuthUser authUser,
+            @RequestBody StatusUpdateDto dto
+    ){
+        TaskResponse updated = taskService.status(taskId, authUser, dto);
+        return ApiResponse.success(SuccessCode.TASK_UPDATE_SUCCESS).body(updated);
     }
 }

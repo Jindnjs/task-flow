@@ -1,6 +1,8 @@
 package com.example.taskflow.domain.task.entity;
 
 import com.example.taskflow.common.entity.BaseEntity;
+import com.example.taskflow.common.enums.ErrorCode;
+import com.example.taskflow.common.exception.TaskFlowException;
 import com.example.taskflow.domain.task.enums.Priority;
 import com.example.taskflow.domain.task.enums.Status;
 import com.example.taskflow.domain.user.entity.User;
@@ -45,6 +47,14 @@ public class Task extends BaseEntity {
         this.dueDate = dueDate;
         this.creator = creator;
         this.assignee = assignee;
+    }
+    public void updateStatus(Status status) {
+        if (this.status.isChange(status)) {
+            this.status = status;
+        }
+        else{
+            throw new TaskFlowException(ErrorCode.STATUS_CANT_CHANGE);
+        }
     }
 }
 

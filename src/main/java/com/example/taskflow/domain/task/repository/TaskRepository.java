@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
     @EntityGraph(attributePaths = {"assignee"})
-    Optional<Task> findById(Long id);
+    Optional<Task> findByIdAndIsDeletedIsFalse(Long id);
     @EntityGraph(attributePaths = {"assignee"})
-    Page<Task> findAllByStatus(Status status, Pageable pageable);
+    Page<Task> findAllByStatusAndIsDeletedIsFalse(Status status, Pageable pageable);
 }
